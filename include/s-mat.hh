@@ -220,7 +220,7 @@ constexpr bool operator!=(const Matrix<T,R,C> &A, const Matrix<T,R,C> &B)
 }
 
 template <typename T, unsigned R, unsigned C, typename P,
-typename std::enable_if<std::is_unsigned<P>::value>::type = nullptr >
+typename std::enable_if_t<std::is_unsigned<P>::value>* = nullptr >
 constexpr Matrix<T,R,C> operator^(Matrix<T,R,C> A, P pow)
 {
     if (pow == 0)
