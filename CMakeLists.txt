@@ -5,5 +5,8 @@ add_library(s-mat INTERFACE)
 
 target_include_directories(s-mat INTERFACE include/)
 
-enable_testing()
-add_subdirectory(test/)
+
+if(ENABLE_TESTING)
+    enable_testing()
+    add_subdirectory(test/)
+endif()
