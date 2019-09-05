@@ -122,6 +122,15 @@ struct Matrix
 
     constexpr Matrix(){ }
 
+    explicit constexpr Matrix (T v)
+    {
+        for (int i=0; i<Rows; ++i)
+        {
+            mat[i] = Vec<T,Cols>(v);
+        }
+    }
+
+
     constexpr Matrix (std::initializer_list<T> l)
     {
         unsigned i=0;
@@ -220,7 +229,7 @@ constexpr bool operator!=(const Matrix<T,R,C> &A, const Matrix<T,R,C> &B)
 }
 
 template <typename T, unsigned R, unsigned C, typename P,
-typename std::enable_if_t<std::is_unsigned<P>::value>* = nullptr >
+typename std::enable_if_t<std::is_integral<P>::value>* = nullptr >
 constexpr Matrix<T,R,C> operator^(Matrix<T,R,C> A, P pow)
 {
     if (pow == 0)
@@ -228,8 +237,11 @@ constexpr Matrix<T,R,C> operator^(Matrix<T,R,C> A, P pow)
     if (pow == 1)
         return A;
 
+    if (pow == 2)
+        return A*A;
+
     if (pow%2 == 1)
-        return A*A^(pow-1);
+        return A*(A^(pow-1));
     else
         return A^(pow/2)^2;
 }

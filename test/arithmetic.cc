@@ -46,10 +46,39 @@ int main()
                               0.175875,    0.022794375, 0.098829,    0.002668383,
                               0.004748625, 0.000615448, 0.002668383, 0.000072046};
 
-
-   std::cerr << F_prod;
-   std::cerr << F*F_prime;
-
    assert(is_close(F*F_prime,F_prod,0.0000001));
+
+   Matrix<int,3,3> G {
+       1, 5, 9,
+       2, 6, 10,
+       3, 7, 11};
+
+   Matrix<int,3,3> G_3 {
+       708, 1884, 3060,
+       840, 2232, 3624,
+       972, 2580, 4188};
+
+   auto cG_3 = G^3;
+   assert(cG_3 == G_3);
+   
+   
+   assert( (G[0] == Vec<int,3>{1,5,9}) );
+   assert(G[0][2] == 9);
+   assert(G[2][0] == 3);
+
+
+   Matrix<int,3,3> H {
+       1, 1, 1,
+       1, 1, 1,
+       1, 1, 1};
+
+   Matrix<int,3,3> G_m_H {
+       0,4,8,
+       1,5,9,
+       2,6,10};
+
+   assert(G-H == G_m_H);
+   assert(G_m_H + H == G);
+   assert(G != H);
 }
 
