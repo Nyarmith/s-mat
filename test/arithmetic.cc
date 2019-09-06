@@ -3,7 +3,7 @@
 #include <cassert>
 #include <iostream>
 
-using namespace smat;
+using namespace SMat;
 
 int main()
 {
@@ -58,7 +58,7 @@ int main()
        840, 2232, 3624,
        972, 2580, 4188};
 
-   auto cG_3 = G^3;
+   auto cG_3 = pow(G,3);
    assert(cG_3 == G_3);
    
    
@@ -67,10 +67,9 @@ int main()
    assert(G[2][0] == 3);
 
 
-   Matrix<int,3,3> H {
-       1, 1, 1,
-       1, 1, 1,
-       1, 1, 1};
+   Matrix<int,3,3> H {1, 1, 1,
+                      1, 1, 1,
+                      1, 1, 1}; //equivalent to explcitl c-tor w/ arg 1
 
    Matrix<int,3,3> G_m_H {
        0,4,8,
@@ -80,5 +79,10 @@ int main()
    assert(G-H == G_m_H);
    assert(G_m_H + H == G);
    assert(G != H);
+
+   Matrix<int,3,3> Threes(3);
+   assert(H*3 == Threes);
+   assert(3*H == Threes);
+   assert(H == Threes/3);
 }
 

@@ -5,7 +5,7 @@
 #include <iostream>
 
 
-namespace smat {
+namespace SMat {
 
 template<typename T, unsigned C>
 std::ostream& operator<<(std::ostream& os, const Vec<T,C> o)
