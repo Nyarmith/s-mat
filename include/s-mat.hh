@@ -241,6 +241,24 @@ constexpr Matrix<T,R,C> operator*(const Matrix<T,R,C> &A, const T s)
 }
 
 template <typename T, unsigned R, unsigned C>
+constexpr Matrix<T,R,C> operator*(const Vec<T,R> &V, const Matrix<T,R,C> &A)
+{
+    Vec<T,C> ret;
+    for (unsigned i=0; i<C; ++i)
+        ret[i] = V*A.col(i);
+    return ret;
+}
+
+template <typename T, unsigned R, unsigned C>
+constexpr Matrix<T,R,C> operator*(const Matrix<T,R,C> &A, const Vec<T,R> &V)
+{
+    Vec<T,C> ret;
+    for (unsigned i=0; i<R; ++i)
+        ret[i] = A[i]*V;
+    return ret;
+}
+
+template <typename T, unsigned R, unsigned C>
 constexpr Matrix<T,R,C> operator*(const T s, const Matrix<T,R,C> &A)
 {
     return A*s;

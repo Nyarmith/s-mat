@@ -1,5 +1,5 @@
 #include "s-mat.hh"
-#include "util.hh"
+#include "formatting.hh"
 #include <cassert>
 #include <iostream>
 
